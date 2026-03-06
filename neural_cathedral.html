@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Cathedral - Sacred Brain Architecture</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cathedral-bg: #050508;
+            --neural-gold: #c9a227;
+            --synapse-blue: #4a90e2;
+            --axon-purple: #9b59b6;
+            --dendrite-rose: #e8b4b8;
+            --myelin-white: rgba(255, 255, 255, 0.9);
+            --chapel-shadow: #0a0a0f;
+            --stained-glass-1: rgba(201, 162, 39, 0.3);
+            --stained-glass-2: rgba(74, 144, 226, 0.3);
+            --stained-glass-3: rgba(155, 89, 182, 0.3);
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--cathedral-bg);
+            color: var(--myelin-white);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Cathedral Architecture Background */
+        .cathedral-architecture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                linear-gradient(180deg, var(--cathedral-bg) 0%, var(--chapel-shadow) 100%);
+        }
+
+        /* Neural Vault Ceiling */
+        .neural-vault {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(ellipse at 50% 100%, transparent 40%, rgba(201, 162, 39, 0.1) 70%),
+                repeating-conic-gradient(
+                    from 0deg at 50% 100%,
+                    transparent 0deg 5deg,
+                    rgba(255, 255, 255, 0.02) 5deg 10deg
+                );
+            transform: perspective(500px) rotateX(60deg);
+            animation: vaultBreathe 20s ease-in-out infinite;
+        }
+
+        @keyframes vaultBreathe {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Stained Glass Windows */
+        .stained-window {
+            position: fixed;
+            width: 200px;
+            height: 400px;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(1px);
+        }
+
+        .window-left {
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: 
+                linear-gradient(180deg, var(--stained-glass-1) 0%, transparent 50%),
+                linear-gradient(0deg, var(--stained-glass-2) 0%, transparent 50%);
+            clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
+            animation: lightShift 10s ease-in-out infinite;
+        }
+
+        .window-right {
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: 
+                linear-gradient(180deg, var(--stained-glass-3) 0%, transparent 50%),
+                linear-gradient(0deg, var(--stained-glass-1) 0%, transparent 50%);
+            clip-path: polygon(100% 0, 0 20%, 0 80%, 100% 100%);
+            animation: lightShift 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes lightShift {
+            0%, 100% { opacity: 0.4; filter: blur(1px); }
+            50% { opacity: 0.7; filter: blur(3px); }
+        }
+
+        /* Sacred Cursor Tools */
+        .sacred-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s;
+        }
+
+        .cursor-censer {
+            width: 40px;
+            height: 60px;
+            opacity: 0;
+            position: relative;
+        }
+
+        .cursor-censer.active {
+            opacity: 1;
+        }
+
+        .censer-chain {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--neural-gold), transparent);
+            transform: translateX(-50%);
+        }
+
+        .censer-bowl {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--neural-gold);
+            border-radius: 0 0 50% 50%;
+            background: radial-gradient(ellipse at 50% 30%, rgba(201, 162, 39, 0.3), transparent);
+        }
+
+        .cursor-scalpel {
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+            position: relative;
+        }
+
+        .cursor-scalpel.active {
+            opacity: 1;
+        }
+
+        .scalpel-blade {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--myelin-white), transparent);
+            transform: translate(-50%, -50%) rotate(-45deg);
+            box-shadow: 0 0 10px var(--myelin-white);
+        }
+
+        /* Nave Navigation */
+        .cathedral-nav {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .nav-chapel {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s;
+            opacity: 0.4;
+            position: relative;
+        }
+
+        .nav-chapel::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100px;
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neural-gold));
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .nav-chapel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -100px;
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--neural-gold), transparent);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .nav-chapel:hover::before,
+        .nav-chapel:hover::after {
+            opacity: 1;
+            width: 100px;
+        }
+
+        .nav-chapel:hover,
+        .nav-chapel.active {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .chapel-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .chapel-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            color: var(--neural-gold);
+        }
+
+        .chapel-latin {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Central Altar - Neural Hub */
+        .neural-altar {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 100px 40px;
+        }
+
+        .altar-piece {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Brain Mandala */
+        .brain-mandala {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: mandalaRotate 60s linear infinite;
+        }
+
+        @keyframes mandalaRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .mandala-ring {
+            position: absolute;
+            border: 1px solid;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .mandala-1 {
+            width: 100%;
+            height: 100%;
+            border-color: rgba(201, 162, 39, 0.3);
+            border-style: dashed;
+        }
+
+        .mandala-2 {
+            width: 75%;
+            height: 75%;
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+
+        .mandala-3 {
+            width: 50%;
+            height: 50%;
+            border-color: rgba(155, 89, 182, 0.3);
+            border-style: dotted;
+        }
+
+        .synapse-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--neural-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--neural-gold);
+        }
+
+        .altar-text {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .altar-text h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: var(--neural-gold);
+            margin-bottom: 20px;
+        }
+
+        .altar-text p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Side Chapels */
+        .side-chapel {
+            max-width: 800px;
+            margin: 150px auto;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s;
+        }
+
+        .side-chapel.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .side-chapel::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--neural-gold);
+        }
+
+        .chapel-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .chapel-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--neural-gold);
+            margin-bottom: 10px;
+        }
+
+        .chapel-header .latin-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.2em;
+        }
+
+        .chapel-content {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: justify;
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        .chapel-content p {
+            margin-bottom: 20px;
+        }
+
+        .neural-terminology {
+            color: var(--synapse-blue);
+            font-style: italic;
+            cursor: pointer;
+            border-bottom: 1px dotted var(--synapse-blue);
+            transition: all 0.3s;
+        }
+
+        .neural-terminology:hover {
+            color: var(--neural-gold);
+            border-bottom-color: var(--neural-gold);
+        }
+
+        /* Pilaster Columns */
+        .pilaster {
+            position: fixed;
+            width: 60px;
+            height: 100vh;
+            top: 0;
+            z-index: -1;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(201, 162, 39, 0.05) 50%, 
+                transparent 100%);
+        }
+
+        .pilaster-left { left: 0; }
+        .pilaster-right { right: 0; }
+
+        /* Neural Rosette */
+        .neural-rosette {
+            width: 200px;
+            height: 200px;
+            margin: 60px auto;
+            position: relative;
+        }
+
+        .rosette-layer {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s;
+        }
+
+        .rosette-1 {
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(201, 162, 39, 0.3);
+            animation: rosettePulse 4s ease-in-out infinite;
+        }
+
+        .rosette-2 {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            animation: rosettePulse 4s ease-in-out infinite 1s;
+        }
+
+        .rosette-3 {
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, var(--neural-gold) 0%, transparent 70%);
+            animation: rosettePulse 4s ease-in-out infinite 2s;
+        }
+
+        @keyframes rosettePulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chapel-content { column-count: 1; }
+            .stained-window { display: none; }
+            .altar-piece { width: 300px; height: 300px; }
+            .cathedral-nav { gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cathedral-architecture"></div>
+    <div class="neural-vault"></div>
+    <div class="stained-window window-left"></div>
+    <div class="stained-window window-right"></div>
+    <div class="pilaster pilaster-left"></div>
+    <div class="pilaster pilaster-right"></div>
+
+    <div class="sacred-cursor cursor-censer" id="censer">
+        <div class="censer-chain"></div>
+        <div class="censer-bowl"></div>
+    </div>
+    <div class="sacred-cursor cursor-scalpel" id="scalpel">
+        <div class="scalpel-blade"></div>
+    </div>
+
+    <nav class="cathedral-nav">
+        <div class="nav-chapel active" data-chapel="altar" onclick="visitChapel('altar')">
+            <div class="chapel-icon">✦</div>
+            <div class="chapel-name">ALTAR</div>
+            <div class="chapel-latin">Altare Cerebri</div>
+        </div>
+        <div class="nav-chapel" data-chapel="cortex" onclick="visitChapel('cortex')">
+            <div class="chapel-icon">◈</div>
+            <div class="chapel-name">CORTEX</div>
+            <div class="chapel-latin">Cortex Cerebri</div>
+        </div>
+        <div class="nav-chapel" data-chapel="synapse" onclick="visitChapel('synapse')">
+            <div class="chapel-icon">◉</div>
+            <div class="chapel-name">SYNAPSE</div>
+            <div class="chapel-latin">Synapsis Sacra</div>
+        </div>
+        <div class="nav-chapel" data-chapel="limbic" onclick="visitChapel('limbic')">
+            <div class="chapel-icon">◐</div>
+            <div class="chapel-name">LIMBIC</div>
+            <div class="chapel-latin">Systema Limbicum</div>
+        </div>
+    </nav>
+
+    <section class="neural-altar" id="chapel-altar">
+        <div class="altar-piece">
+            <div class="brain-mandala">
+                <div class="mandala-ring mandala-1"></div>
+                <div class="mandala-ring mandala-2"></div>
+                <div class="mandala-ring mandala-3"></div>
+                <div class="synapse-node" style="top: 0; left: 50%; transform: translateX(-50%);"></div>
+                <div class="synapse-node" style="bottom: 0; left: 50%; transform: translateX(-50%);"></div>
+                <div class="synapse-node" style="top: 50%; left: 0; transform: translateY(-50%);"></div>
+                <div class="synapse-node" style="top: 50%; right: 0; transform: translateY(-50%);"></div>
+            </div>
+            <div class="altar-text">
+                <h1>NEURAL<br>CATHEDRAL</h1>
+                <p>Sacred architecture of the mind</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="side-chapel" id="chapel-cortex">
+        <div class="chapel-header">
+            <h2>The Chapel of the Cortex</h2>
+            <div class="latin-subtitle">CAPPELLA CORTICIS</div>
+        </div>
+        <div class="chapel-content">
+            <p>
+                The <span class="neural-terminology" onclick="revealTerm(this)">cerebral cortex</span> 
+                rises like the vaulted ceiling of a Gothic cathedral, its six layers forming 
+                the nave through which all conscious thought must pass. Here, the 
+                <span class="neural-terminology" onclick="revealTerm(this)">pyramidal neurons</span> 
+                stand as columns, supporting the weight of perception.
+            </p>
+            <p>
+                In this sacred space, sensory information becomes reverence. The occipital 
+                lobe processes vision as stained glass filters light—raw photons transformed 
+                into meaningful patterns, the mundane made numinous through layered interpretation.
+            </p>
+        </div>
+        <div class="neural-rosette">
+            <div class="rosette-layer rosette-1"></div>
+            <div class="rosette-layer rosette-2"></div>
+            <div class="rosette-layer rosette-3"></div>
+        </div>
+    </section>
+
+    <section class="side-chapel" id="chapel-synapse">
+        <div class="chapel-header">
+            <h2>The Chapel of Synapses</h2>
+            <div class="latin-subtitle">CAPPELLA SYNAPSIUM</div>
+        </div>
+        <div class="chapel-content">
+            <p>
+                Between neurons lies the synaptic cleft—a gap no wider than 40 nanometers, 
+                yet vast as the space between stars. Here, <span class="neural-terminology" onclick="revealTerm(this)">neurotransmitters</span> 
+                cross like prayers offered across an abyss, chemical messengers carrying 
+                electrical whispers from one cell to another.
+            </p>
+            <p>
+                Each synapse is a confession booth. Information enters, is weighed, transformed, 
+                and transmitted—or denied, the signal lost to the void. The strength of these 
+                connections, their plasticity, forms the physical basis of memory and learning: 
+                architecture sculpted by experience.
+            </p>
+        </div>
+    </section>
+
+    <section class="side-chapel" id="chapel-limbic">
+        <div class="chapel-header">
+            <h2>The Chapel of the Limbic</h2>
+            <div class="latin-subtitle">CAPPELLA LIMBICA</div>
+        </div>
+        <div class="chapel-content">
+            <p>
+                Deep within the temporal lobe, the <span class="neural-terminology" onclick="revealTerm(this)">hippocampus</span> 
+                coils like a seahorse, ancient structure older than conscious thought. This 
+                is the crypt where memories are laid to rest, consolidated during sleep's 
+                dark mass, transferred from fleeting to eternal.
+            </p>
+            <p>
+                The amygdala serves as sentinel, watching for danger with the vigilance of 
+                a gargoyle. It remembers fear before the cortex understands threat, a primitive 
+                priesthood maintaining rituals older than language. Here, emotion and memory 
+                intertwine like incense smoke rising through filtered light.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Sacred cursor follow
+        const censer = document.getElementById('censer');
+        const scalpel = document.getElementById('scalpel');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let currentTool = 'censer';
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+
+            if (currentTool === 'censer') {
+                censer.style.left = cursorX - 20 + 'px';
+                censer.style.top = cursorY - 30 + 'px';
+            } else {
+                scalpel.style.left = cursorX - 20 + 'px';
+                scalpel.style.top = cursorY - 20 + 'px';
+            }
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        censer.classList.add('active');
+
+        // Tool switching on terminology hover
+        document.querySelectorAll('.neural-terminology').forEach(term => {
+            term.addEventListener('mouseenter', () => {
+                censer.classList.remove('active');
+                scalpel.classList.add('active');
+                currentTool = 'scalpel';
+            });
+            term.addEventListener('mouseleave', () => {
+                scalpel.classList.remove('active');
+                censer.classList.add('active');
+                currentTool = 'censer';
+            });
+        });
+
+        // Chapel navigation
+        function visitChapel(chapelId) {
+            // Update nav
+            document.querySelectorAll('.nav-chapel').forEach(c => c.classList.remove('active'));
+            document.querySelector(`[data-chapel="${chapelId}"]`).classList.add('active');
+
+            // Scroll to chapel
+            if (chapelId === 'altar') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const chapel = document.getElementById(`chapel-${chapelId}`);
+                chapel.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => chapel.classList.add('revealed'), 500);
+            }
+        }
+
+        // Reveal chapel on scroll
+        const chapels = document.querySelectorAll('.side-chapel');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        chapels.forEach(c => observer.observe(c));
+
+        // Terminology reveal
+        function revealTerm(element) {
+            const terms = {
+                'cerebral cortex': 'The outermost layer of the brain, responsible for higher-order thinking, sensory processing, and consciousness.',
+                'pyramidal neurons': 'The primary excitatory neurons of the cerebral cortex, named for their triangular cell bodies.',
+                'neurotransmitters': 'Chemical messengers that transmit signals across synapses, including dopamine, serotonin, and glutamate.',
+                'hippocampus': 'A seahorse-shaped structure critical for memory formation and spatial navigation.',
+            };
+
+            const term = element.textContent;
+            const definition = terms[term] || 'A fundamental component of neural architecture.';
+
+            // Create temporary tooltip
+            const tooltip = document.createElement('div');
+            tooltip.style.cssText = `
+                position: fixed;
+                background: rgba(10, 10, 15, 0.95);
+                border: 1px solid var(--neural-gold);
+                padding: 15px;
+                max-width: 300px;
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.8);
+                z-index: 1000;
+                left: ${mouseX + 20}px;
+                top: ${mouseY + 20}px;
+                font-family: 'Crimson Text', serif;
+            `;
+            tooltip.textContent = definition;
+            document.body.appendChild(tooltip);
+
+            setTimeout(() => tooltip.remove(), 3000);
+        }
+
+        // Mandala rotation speed based on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const mandala = document.querySelector('.brain-mandala');
+            const speed = Math.max(20, 60 - scrolled / 50);
+            mandala.style.animationDuration = speed + 's';
+        });
+    </script>
+</body>
+</html>
